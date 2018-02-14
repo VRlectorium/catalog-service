@@ -1,0 +1,6 @@
+package: .
+import:
+- package: github.com/VRlectorium/catalog-service
+  subpackages:
+  - handlers
+- package: github.com/gorila/mux
