@@ -14,6 +14,7 @@ Current golang version: 1.9.3
 Use this command to install project dependencies
 ```
 go get github.com/gorilla/mux
+go get github.com/go-pg/pg
 ```
 ## RUN
 ```
