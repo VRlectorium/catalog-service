@@ -2,7 +2,7 @@ version: '2.1'
 services:
   catalog:
     container_name: VRL_catalog
-    build: ./src
+    build: .
     volumes:
       - './src:/go/src/app'
     ports:
@@ -14,10 +14,10 @@ services:
     container_name: VRL-db
     build: ./db
     volumes:
-      - ./db/pgdata:/pgdata
+      - ./db/pgdata:/var/lib/postgresql/data
     ports:
-      - "5432"
+      - "5432:5432"
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
-      - PGDATA=/pgdata
+      - POSTGRES_DB=catalogdb
