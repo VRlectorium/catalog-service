@@ -4,7 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/VRlectorium/catalog-service/handlers"
+	"./handlers"
+
 	"github.com/gorilla/mux"
 )
 
@@ -13,9 +14,13 @@ const (
 )
 
 func main() {
-	courses := handlers.NewCourses()
+	handlers := handlers.NewHandlers()
 	router := mux.NewRouter().StrictSlash(true)
+	//data.NewPsqlStore("11")
 	sub := router.PathPrefix("/api/v1").Subrouter()
-	sub.Methods("GET").Path("/").HandlerFunc(courses.Handle)
+	sub.Methods("GET").Path("/courses").HandlerFunc(handlers.GetCourses)
+	sub.Methods("POST").Path("/courses").HandlerFunc(handlers.PostCourse)
+	sub.Methods("GET").Path("/courses/{id}").HandlerFunc(handlers.GetCourse)
+	//sub.Methods("POST").Path("/courses").HandlerFunc(handlers.PostCourse)
 	log.Fatal(http.ListenAndServe(PORT, router))
 }
