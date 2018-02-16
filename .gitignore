@@ -1,5 +1,7 @@
 *.exe
 *.exe~
 *.
-main
+catalog-service
 /vendor
+/db/pgdata
+main
