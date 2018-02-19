@@ -4,12 +4,12 @@
 cd $GOPATH/src/github.com
 mkdir VRlectorium
 git clone https://github.com/VRlectorium/catalog-service
-cd catalog-service
+cd VRlectorium/catalog-service
 ```
 or
 ```
 git clone https://github.com/VRlectorium/catalog-service folder_name
-cd folder_name
+cd VRlectorium/folder_name
 ```
 ## Before running
 Current golang version: 1.9.3
