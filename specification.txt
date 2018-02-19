@@ -1,0 +1,65 @@
+GET /courses
+call GetCourses()
+return json {
+    "courses": [
+        {
+            id:1,
+            name: "Test"
+        }
+        ...
+    ]
+}
+
+POST /courses 
+call PostCourse()
+return json {
+    status: 201 with success
+    or 
+    status: 500 with error
+}
+
+GET /courses/:courseID 
+call GetCourse(courseID)
+return json {
+    course: {
+        id: 1
+        subjects: [
+            {
+                id: 1
+                courseId: 1,
+                name: "TestSubject"
+            }
+        ]
+    }
+}
+
+GET /subjects
+call GetSubjects()
+return 
+json 200 {
+    "subjects": [
+        {
+            id:1,
+            name: "TestSubject"
+        }
+        ...
+    ]
+}
+or
+json 404
+
+POST /subjects 
+call PostSubjects()
+return json {
+    status: 201 with success
+    or 
+    status: 500 with error
+}
+
+GET /subjects/:subjectID
+call GetSubject(subjectID)
+return 
+json 200 {
+    id: 1,
+    name: "TestSubject"
+}
