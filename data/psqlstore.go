@@ -25,6 +25,7 @@ func NewPsqlStore(dbName string) (*PsqlStore, error) {
 	db := pg.Connect(&pg.Options{
 		User:     "root",
 		Password: "root",
+		Addr:     "catalog-db:5432",
 		Database: dbName,
 	})
 	return &PsqlStore{db: db}, nil
