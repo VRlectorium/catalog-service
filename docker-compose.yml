@@ -4,20 +4,25 @@ services:
     container_name: VRL_catalog
     build: .
     volumes:
-      - './src:/go/src/app'
+      - '.:/go/src/app'
     ports:
       - '9090:9090'
     links:
       - catalog-db
+    depends_on:
+      catalog-db:
+        condition: service_healthy
 
   catalog-db:
     container_name: VRL-db
     build: ./db
     volumes:
-      - ./db/pgdata:/var/lib/postgresql/data
+      - /var/lib/postgresql/data
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=catalogdb
+    healthcheck:
+      test: exit 0
