@@ -2,6 +2,7 @@ package data
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/go-pg/pg"
 )
@@ -22,12 +23,22 @@ type Course struct {
 }
 
 func NewPsqlStore(dbName string) (*PsqlStore, error) {
-	db := pg.Connect(&pg.Options{
-		User:     "root",
-		Password: "root",
-		Addr:     "catalog-db:5432",
-		Database: dbName,
-	})
+	var db *pg.DB
+	if os.Getenv("TEST") == "TEST" {
+		db = pg.Connect(&pg.Options{
+			User:     "root",
+			Password: "root",
+			Addr:     "catalog-db:5432",
+			Database: dbName,
+		})
+	} else {
+		db = pg.Connect(&pg.Options{
+			User:     "root",
+			Password: "root",
+			Database: dbName,
+		})
+	}
+
 	return &PsqlStore{db: db}, nil
 }
 

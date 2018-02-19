@@ -5,6 +5,8 @@ services:
     build: .
     volumes:
       - '.:/go/src/app'
+    environment:
+      - TEST=TEST
     ports:
       - '9090:9090'
     links:
