@@ -5,4 +5,4 @@ WORKDIR /go/src/app
 RUN go get app
 RUN go install
 
-ENTRYPOINT [ "/go/bin/app" ]
+CMD [ "/go/bin/app" ]
