@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"./handlers"
+	"github.com/VRlectorium/catalog-service/handlers"
 
 	"github.com/gorilla/mux"
 )
