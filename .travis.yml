@@ -1,0 +1,12 @@
+sudo: required
+services:
+  - docker
+
+before-script:
+  - docker-compose up --build -d
+
+script:
+  - docker-compose run catalog go test
+
+after-script:
+  - docker-compose down
