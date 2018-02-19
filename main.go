@@ -13,14 +13,18 @@ const (
 	PORT string = ":9090"
 )
 
-func main() {
-	handlers := handlers.NewHandlers()
+func Routes() *mux.Router {
+	routes := handlers.NewHandlers()
 	router := mux.NewRouter().StrictSlash(true)
-	//data.NewPsqlStore("11")
 	sub := router.PathPrefix("/api/v1").Subrouter()
-	sub.Methods("GET").Path("/courses").HandlerFunc(handlers.GetCourses)
-	sub.Methods("POST").Path("/courses").HandlerFunc(handlers.PostCourse)
-	sub.Methods("GET").Path("/courses/{id}").HandlerFunc(handlers.GetCourse)
-	//sub.Methods("POST").Path("/courses").HandlerFunc(handlers.PostCourse)
-	log.Fatal(http.ListenAndServe(PORT, router))
+	sub.Methods("GET").Path("/courses").HandlerFunc(routes.GetCourses)
+	sub.Methods("POST").Path("/courses").HandlerFunc(routes.PostCourse)
+	sub.Methods("GET").Path("/courses/{id}").HandlerFunc(routes.GetCourse)
+	router.NotFoundHandler = http.HandlerFunc(handlers.GetNotFound)
+
+	return router
+}
+
+func main() {
+	log.Fatal(http.ListenAndServe(PORT, Routes()))
 }
