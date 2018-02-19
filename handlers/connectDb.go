@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"../data"
+	"github.com/VRlectorium/catalog-service/data"
 )
 
 type Handlers struct {
