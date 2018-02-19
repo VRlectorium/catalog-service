@@ -6,7 +6,7 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"../data"
+	"github.com/VRlectorium/catalog-service/data"
 )
 
 type Courses struct {
