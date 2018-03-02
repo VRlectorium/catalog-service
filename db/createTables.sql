@@ -1,6 +1,6 @@
 CREATE TABLE subjects (
     id serial primary key,
-    courseID serial,
+    courseid serial,
     name varchar(128) not null
 );
 CREATE TABLE courses (
