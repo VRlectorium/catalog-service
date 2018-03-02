@@ -20,6 +20,9 @@ func Routes() *mux.Router {
 	sub.Methods("GET").Path("/courses").HandlerFunc(routes.GetCourses)
 	sub.Methods("POST").Path("/courses").HandlerFunc(routes.PostCourse)
 	sub.Methods("GET").Path("/courses/{id}").HandlerFunc(routes.GetCourse)
+	sub.Methods("GET").Path("/subjects").HandlerFunc(routes.GetSubjects)
+	sub.Methods("POST").Path("/subjects").HandlerFunc(routes.PostSubject)
+	sub.Methods("GET").Path("/subjects/{id}").HandlerFunc(routes.GetSubject)
 	router.NotFoundHandler = http.HandlerFunc(handlers.GetNotFound)
 
 	return router

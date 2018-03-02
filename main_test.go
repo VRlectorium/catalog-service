@@ -5,6 +5,7 @@ import (
 	"io"
 	"net/http"
 	"net/http/httptest"
+	"net/url"
 	"strings"
 	"testing"
 )
@@ -105,6 +106,35 @@ func TestPostCourse(t *testing.T) {
 	expectedResponse := NewExpectedResponse(http.StatusCreated)
 	testReq := TestRequest{url: fmt.Sprintf("%s/api/v1/courses", server.URL)}
 	res, err := testReq.doPost(strings.NewReader("name=GOLANG"))
+	if err != nil {
+		t.Error(err)
+	}
+	err = expectedResponse.checkResponse(res)
+	if err != nil {
+		t.Error(err)
+	}
+}
+
+func TestGetSubject(t *testing.T) {
+	expectedResponse := NewExpectedResponse(http.StatusOK)
+	tesReq := TestRequest{url: fmt.Sprintf("%s/api/v1/subjects", server.URL)}
+	res, err := tesReq.doGet()
+	if err != nil {
+		t.Error(err)
+	}
+	err = expectedResponse.checkResponse(res)
+	if err != nil {
+		t.Error(err)
+	}
+}
+
+func TestPostSubject(t *testing.T) {
+	expectedResponse := NewExpectedResponse(http.StatusCreated)
+	testReq := TestRequest{url: fmt.Sprintf("%s/api/v1/subjects", server.URL)}
+	form := url.Values{}
+	form.Add("courseid", "1")
+	form.Add("name", "GOLANG")
+	res, err := testReq.doPost(strings.NewReader(form.Encode()))
 	if err != nil {
 		t.Error(err)
 	}
